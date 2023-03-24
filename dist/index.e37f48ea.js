@@ -558,8 +558,9 @@ function hmrAccept(bundle, id) {
 
 },{}],"aenu9":[function(require,module,exports) {
 var _date = require("./register/date");
+var _shimmerScss = require("./scss/shimmer.scss");
 
-},{"./register/date":"3otmg"}],"3otmg":[function(require,module,exports) {
+},{"./register/date":"3otmg","./scss/shimmer.scss":"6vZ5c"}],"3otmg":[function(require,module,exports) {
 // This code formats an input field with ID "Birthdate" as a date (DD/MM/YYYY) by automatically adding slashes (/) at positions 2 and 5. It also allows users to use the backspace key to delete characters in the input field, including the added slashes.
 const dateInputElement = document.getElementById("Birthdate");
 dateInputElement.addEventListener("input", function(event) {
@@ -584,6 +585,6 @@ dateInputElement.addEventListener("keydown", function(event) {
     }
 });
 
-},{}]},["d8XZh","aenu9"], "aenu9", "parcelRequirebcaf")
+},{}],"6vZ5c":[function() {},{}]},["d8XZh","aenu9"], "aenu9", "parcelRequirebcaf")
 
 //# sourceMappingURL=index.e37f48ea.js.map
