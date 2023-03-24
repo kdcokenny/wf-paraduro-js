@@ -59,4 +59,8 @@
   .icon-shimmer {
     @include shimmer(75px, 75px);
   }
+
+  .button-shimmer {
+    @include shimmer(100px, 40px);
+  }
   
