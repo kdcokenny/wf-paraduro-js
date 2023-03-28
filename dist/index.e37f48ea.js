@@ -560,9 +560,37 @@ function hmrAccept(bundle, id) {
 var _date = require("./register/date");
 var _dashboard = require("./chartjs/dashboard");
 var _shimmerScss = require("./scss/shimmer.scss");
-console.log("Hello world");
+var _slide = require("./onboarding/slide");
+var _uploadImage = require("./onboarding/uploadImage");
+console.log("init");
 
-},{"./scss/shimmer.scss":"6vZ5c","./chartjs/dashboard":"Mvrbg","./register/date":"3otmg"}],"6vZ5c":[function() {},{}],"Mvrbg":[function(require,module,exports) {
+},{"./register/date":"3otmg","./chartjs/dashboard":"Mvrbg","./scss/shimmer.scss":"6vZ5c","./onboarding/slide":"biBaa","./onboarding/uploadImage":"74XQN"}],"3otmg":[function(require,module,exports) {
+const dateInputElement = document.getElementById("Birthdate");
+if (dateInputElement) {
+    dateInputElement.addEventListener("input", function(event) {
+        const target = event.target;
+        const value = target.value;
+        // Automatically add a slash (/) at positions 2 and 5
+        if (value.length === 2 || value.length === 5) {
+            if (value[value.length - 1] !== "/") target.value = value + "/";
+        }
+    });
+    dateInputElement.addEventListener("keydown", function(event) {
+        const target = event.target;
+        const value = target.value;
+        // Allow users to backspace
+        if (event.key === "Backspace") {
+            if (value.length === 3 || value.length === 6) {
+                if (value[value.length - 1] === "/") {
+                    event.preventDefault(); // prevent the default backspace behavior
+                    target.value = value.slice(0, -1);
+                }
+            }
+        }
+    });
+}
+
+},{}],"Mvrbg":[function(require,module,exports) {
 var _auto = require("chart.js/auto");
 document.addEventListener("DOMContentLoaded", function(event) {
     const ctx = document.getElementById("myChart");
@@ -13808,31 +13836,69 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"3otmg":[function(require,module,exports) {
-const dateInputElement = document.getElementById("Birthdate");
-if (dateInputElement) {
-    dateInputElement.addEventListener("input", function(event) {
-        const target = event.target;
-        const value = target.value;
-        // Automatically add a slash (/) at positions 2 and 5
-        if (value.length === 2 || value.length === 5) {
-            if (value[value.length - 1] !== "/") target.value = value + "/";
+},{}],"6vZ5c":[function() {},{}],"biBaa":[function(require,module,exports) {
+window.addEventListener("load", async ()=>{
+    const nextButtons = document.querySelectorAll('[wized="onboard_next"]');
+    const nextSlides = document.querySelectorAll('[wized="onboard_click"]');
+    const backButtons = document.querySelectorAll('[wized="onboard_back"]');
+    let currentSlide = 1;
+    let isRequesting = false;
+    const executeOnboarding = async (requestName, dataPath)=>{
+        await Wized.request.execute(requestName);
+        return await Wized.data.get(dataPath);
+    };
+    const handleClick = async (nextSlide)=>{
+        if (isRequesting) {
+            console.log("already requesting");
+            return;
         }
+        isRequesting = true;
+        let response;
+        if (currentSlide === 1) response = await executeOnboarding("Onboarding one", "r.26.$");
+        else if (currentSlide === 2) response = await executeOnboarding("Onboarding two", "r.27.$");
+        else if (currentSlide === 3) response = await executeOnboarding("Onboarding three", "r.28.$");
+        if (response.statusCode === 200) {
+            nextSlide.click();
+            currentSlide += 1;
+        } else throw new Error("Request failed");
+        isRequesting = false;
+    };
+    const handleBackClick = (backSlide)=>{
+        if (isRequesting || currentSlide <= 1) {
+            console.log("cannot go back");
+            return;
+        }
+        isRequesting = true;
+        backSlide.click();
+        currentSlide -= 1;
+        isRequesting = false;
+    };
+    nextButtons.forEach((nextButton, index)=>{
+        nextButton.addEventListener("click", async ()=>{
+            await handleClick(nextSlides[index]);
+        });
     });
-    dateInputElement.addEventListener("keydown", function(event) {
-        const target = event.target;
-        const value = target.value;
-        // Allow users to backspace
-        if (event.key === "Backspace") {
-            if (value.length === 3 || value.length === 6) {
-                if (value[value.length - 1] === "/") {
-                    event.preventDefault(); // prevent the default backspace behavior
-                    target.value = value.slice(0, -1);
-                }
-            }
+    backButtons.forEach((backButton, index)=>{
+        backButton.addEventListener("click", ()=>{
+            handleBackClick(nextSlides[index - 1]);
+        });
+    });
+});
+
+},{}],"74XQN":[function(require,module,exports) {
+function handleParaduroEvent(eventType, variableName, actionName) {
+    window.addEventListener("LR_DATA_OUTPUT", async (e)=>{
+        if (e.detail.ctx === eventType) {
+            const cdnUrls = e.detail.data.filter((item)=>item.cdnUrl).map((item)=>item.cdnUrl);
+            await Wized.data.setVariable(variableName, cdnUrls);
+            await Wized.request.execute(actionName);
         }
     });
 }
+handleParaduroEvent("paraduro-pfp", "inputpfpurl", "Onboarding pfp");
+handleParaduroEvent("paraduro-hel", "inputhelurl", "Onboarding hel");
+handleParaduroEvent("paraduro-side", "inputsideurl", "Onboarding side");
+handleParaduroEvent("paraduro-portfolio", "inputportfoliourl", "Onboarding portfolio");
 
 },{}]},["d8XZh","aenu9"], "aenu9", "parcelRequire893e")
 
