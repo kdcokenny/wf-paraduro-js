@@ -142,13 +142,13 @@
       this[globalName] = mainExports;
     }
   }
-})({"d8XZh":[function(require,module,exports) {
+})({"8CZuL":[function(require,module,exports) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
-module.bundle.HMR_BUNDLE_ID = "d113fd8ce37f48ea";
+module.bundle.HMR_BUNDLE_ID = "b4e9e67ddf2bc434";
 "use strict";
 /* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, chrome, browser, globalThis, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
 import type {
@@ -556,192 +556,56 @@ function hmrAccept(bundle, id) {
     });
 }
 
-},{}],"aenu9":[function(require,module,exports) {
-async function loadDateModule() {
-    await require("727d1b360d4eec1c");
-}
-async function loadChartJsModule() {
-    await require("b729da2ec9b0e528");
-}
-async function loadShimmerScssModule() {
-    await require("aa37f532b5085637");
-}
-async function loadOnboardingSlideModule() {
-    await require("3cdb4e6684989382");
-}
-async function loadOnboardingUploadImageModule() {
-    await require("9e2f4d46c3056644");
-}
-function getCurrentPath() {
-    return window.location.pathname;
-}
-// Load modules based on the current URL path
-document.addEventListener("DOMContentLoaded", ()=>{
-    const currentPath = getCurrentPath();
-    if (currentPath === "/register") loadDateModule();
-    if (currentPath === "/velkommen/person") loadOnboardingSlideModule();
-    // Load the rest of the modules on every page
-    loadChartJsModule();
-    loadShimmerScssModule();
-    loadOnboardingUploadImageModule();
-});
-console.log("init");
-
-},{"727d1b360d4eec1c":"cQEvf","b729da2ec9b0e528":"bwidj","aa37f532b5085637":"kUXKu","3cdb4e6684989382":"7YRed","9e2f4d46c3056644":"35MMd"}],"cQEvf":[function(require,module,exports) {
-module.exports = require("c180af330d992162")(require("18e2c78a7fa6ca3f").getBundleURL("hWUTQ") + "date.b33864d0.js" + "?" + Date.now()).catch((err)=>{
-    delete module.bundle.cache[module.id];
-    throw err;
-}).then(()=>module.bundle.root("3otmg"));
-
-},{"c180af330d992162":"61B45","18e2c78a7fa6ca3f":"lgJ39"}],"61B45":[function(require,module,exports) {
-"use strict";
-var cacheLoader = require("4d4a1c2b1a2cbf6f");
-module.exports = cacheLoader(function(bundle) {
-    return new Promise(function(resolve, reject) {
-        // Don't insert the same script twice (e.g. if it was already in the HTML)
-        var existingScripts = document.getElementsByTagName("script");
-        if ([].concat(existingScripts).some(function isCurrentBundle(script) {
-            return script.src === bundle;
-        })) {
-            resolve();
-            return;
-        }
-        var preloadLink = document.createElement("link");
-        preloadLink.href = bundle;
-        preloadLink.rel = "preload";
-        preloadLink.as = "script";
-        document.head.appendChild(preloadLink);
-        var script = document.createElement("script");
-        script.async = true;
-        script.type = "text/javascript";
-        script.src = bundle;
-        script.onerror = function(e) {
-            var error = new TypeError("Failed to fetch dynamically imported module: ".concat(bundle, ". Error: ").concat(e.message));
-            script.onerror = script.onload = null;
-            script.remove();
-            reject(error);
-        };
-        script.onload = function() {
-            script.onerror = script.onload = null;
-            resolve();
-        };
-        document.getElementsByTagName("head")[0].appendChild(script);
-    });
-});
-
-},{"4d4a1c2b1a2cbf6f":"j49pS"}],"j49pS":[function(require,module,exports) {
-"use strict";
-var cachedBundles = {};
-var cachedPreloads = {};
-var cachedPrefetches = {};
-function getCache(type) {
-    switch(type){
-        case "preload":
-            return cachedPreloads;
-        case "prefetch":
-            return cachedPrefetches;
-        default:
-            return cachedBundles;
-    }
-}
-module.exports = function(loader, type) {
-    return function(bundle) {
-        var cache = getCache(type);
-        if (cache[bundle]) return cache[bundle];
-        return cache[bundle] = loader.apply(null, arguments).catch(function(e) {
-            delete cache[bundle];
-            throw e;
-        });
+},{}],"biBaa":[function(require,module,exports) {
+window.addEventListener("load", async ()=>{
+    console.log("you shouldn't see this message");
+    const nextButtons = document.querySelectorAll('[wized="onboard_next"]');
+    const nextSlides = document.querySelectorAll('[wized="onboard_click"]');
+    const backButtons = document.querySelectorAll('[wized="onboard_back"]');
+    let currentSlide = 1;
+    let isRequesting = false;
+    const executeOnboarding = async (requestName, dataPath)=>{
+        await Wized.request.execute(requestName);
+        return await Wized.data.get(dataPath);
     };
-};
-
-},{}],"lgJ39":[function(require,module,exports) {
-"use strict";
-var bundleURL = {};
-function getBundleURLCached(id) {
-    var value = bundleURL[id];
-    if (!value) {
-        value = getBundleURL();
-        bundleURL[id] = value;
-    }
-    return value;
-}
-function getBundleURL() {
-    try {
-        throw new Error();
-    } catch (err) {
-        var matches = ("" + err.stack).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^)\n]+/g);
-        if (matches) // The first two stack frames will be this function and getBundleURLCached.
-        // Use the 3rd one, which will be a runtime in the original bundle.
-        return getBaseURL(matches[2]);
-    }
-    return "/";
-}
-function getBaseURL(url) {
-    return ("" + url).replace(/^((?:https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/.+)\/[^/]+$/, "$1") + "/";
-} // TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
-function getOrigin(url) {
-    var matches = ("" + url).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^/]+/);
-    if (!matches) throw new Error("Origin not found");
-    return matches[0];
-}
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-exports.getOrigin = getOrigin;
-
-},{}],"bwidj":[function(require,module,exports) {
-module.exports = require("e7adfb839273c4f5")(require("b2871b231ae7a58e").getBundleURL("hWUTQ") + "dashboard.96f2cdeb.js" + "?" + Date.now()).catch((err)=>{
-    delete module.bundle.cache[module.id];
-    throw err;
-}).then(()=>module.bundle.root("Mvrbg"));
-
-},{"e7adfb839273c4f5":"61B45","b2871b231ae7a58e":"lgJ39"}],"kUXKu":[function(require,module,exports) {
-module.exports = require("32f4c8931440d69b")(require("5da1d727d0eac66").getBundleURL("hWUTQ") + "shimmer.08ffb870.css" + "?" + Date.now()).catch((err)=>{
-    delete module.bundle.cache[module.id];
-    throw err;
-});
-
-},{"32f4c8931440d69b":"1MWPE","5da1d727d0eac66":"lgJ39"}],"1MWPE":[function(require,module,exports) {
-"use strict";
-var cacheLoader = require("ee9561b50e8498c4");
-module.exports = cacheLoader(function(bundle) {
-    return new Promise(function(resolve, reject) {
-        // Don't insert the same link element twice (e.g. if it was already in the HTML)
-        var existingLinks = document.getElementsByTagName("link");
-        if ([].concat(existingLinks).some(function isCurrentBundle(link) {
-            return link.href === bundle && link.rel.indexOf("stylesheet") > -1;
-        })) {
-            resolve();
+    const handleClick = async (nextSlide)=>{
+        if (isRequesting) {
+            console.log("already requesting");
             return;
         }
-        var link = document.createElement("link");
-        link.rel = "stylesheet";
-        link.href = bundle;
-        link.onerror = function(e) {
-            link.onerror = link.onload = null;
-            link.remove();
-            reject(e);
-        };
-        link.onload = function() {
-            link.onerror = link.onload = null;
-            resolve();
-        };
-        document.getElementsByTagName("head")[0].appendChild(link);
+        isRequesting = true;
+        let response;
+        if (currentSlide === 1) response = await executeOnboarding("Onboarding one", "r.26.$");
+        else if (currentSlide === 2) response = await executeOnboarding("Onboarding two", "r.27.$");
+        else if (currentSlide === 3) response = await executeOnboarding("Onboarding three", "r.28.$");
+        if (response.statusCode === 200) {
+            nextSlide.click();
+            currentSlide += 1;
+        } else throw new Error("Request failed");
+        isRequesting = false;
+    };
+    const handleBackClick = (backSlide)=>{
+        if (isRequesting || currentSlide <= 1) {
+            console.log("cannot go back");
+            return;
+        }
+        isRequesting = true;
+        backSlide.click();
+        currentSlide -= 1;
+        isRequesting = false;
+    };
+    nextButtons.forEach((nextButton, index)=>{
+        nextButton.addEventListener("click", async ()=>{
+            await handleClick(nextSlides[index]);
+        });
+    });
+    backButtons.forEach((backButton, index)=>{
+        backButton.addEventListener("click", ()=>{
+            handleBackClick(nextSlides[index - 1]);
+        });
     });
 });
 
-},{"ee9561b50e8498c4":"j49pS"}],"7YRed":[function(require,module,exports) {
-module.exports = require("ba7a6a0c851d6aa3")(require("7a872314112b5a51").getBundleURL("hWUTQ") + "slide.df2bc434.js" + "?" + Date.now()).catch((err)=>{
-    delete module.bundle.cache[module.id];
-    throw err;
-}).then(()=>module.bundle.root("biBaa"));
+},{}]},["8CZuL"], null, "parcelRequire893e")
 
-},{"ba7a6a0c851d6aa3":"61B45","7a872314112b5a51":"lgJ39"}],"35MMd":[function(require,module,exports) {
-module.exports = require("43608a67f3501192")(require("7247e963328bc250").getBundleURL("hWUTQ") + "uploadImage.04439741.js" + "?" + Date.now()).catch((err)=>{
-    delete module.bundle.cache[module.id];
-    throw err;
-}).then(()=>module.bundle.root("74XQN"));
-
-},{"43608a67f3501192":"61B45","7247e963328bc250":"lgJ39"}]},["d8XZh","aenu9"], "aenu9", "parcelRequire893e")
-
-//# sourceMappingURL=index.e37f48ea.js.map
+//# sourceMappingURL=slide.df2bc434.js.map

@@ -1,4 +1,5 @@
 window.addEventListener('load', async () => {
+  console.log("you shouldn't see this message");
   const nextButtons = document.querySelectorAll('[wized="onboard_next"]');
   const nextSlides = document.querySelectorAll('[wized="onboard_click"]');
   const backButtons = document.querySelectorAll('[wized="onboard_back"]');
