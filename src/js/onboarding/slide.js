@@ -11,7 +11,7 @@ window.addEventListener('load', async () => {
     return await Wized.data.get(dataPath);
   };
 
-  const handleClick = async nextSlide => {
+  const handleClick = async () => {
     if (isRequesting) {
       console.log('already requesting');
       return;
@@ -29,7 +29,8 @@ window.addEventListener('load', async () => {
     }
 
     if (response.statusCode === 200) {
-      nextSlide.click();
+      document.getElementById(`onboard-next`).click();
+      console.log(`onboard-next-${currentSlide}`);
       currentSlide += 1;
     } else {
       throw new Error('Request failed');
@@ -52,7 +53,7 @@ window.addEventListener('load', async () => {
 
   nextButtons.forEach((nextButton, index) => {
     nextButton.addEventListener('click', async () => {
-      await handleClick(nextSlides[index]);
+      await handleClick();
     });
   });
 

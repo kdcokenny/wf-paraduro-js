@@ -568,7 +568,7 @@ window.addEventListener("load", async ()=>{
         await Wized.request.execute(requestName);
         return await Wized.data.get(dataPath);
     };
-    const handleClick = async (nextSlide)=>{
+    const handleClick = async ()=>{
         if (isRequesting) {
             console.log("already requesting");
             return;
@@ -579,7 +579,8 @@ window.addEventListener("load", async ()=>{
         else if (currentSlide === 2) response = await executeOnboarding("Onboarding two", "r.27.$");
         else if (currentSlide === 3) response = await executeOnboarding("Onboarding three", "r.28.$");
         if (response.statusCode === 200) {
-            nextSlide.click();
+            document.getElementById(`onboard-next`).click();
+            console.log(`onboard-next-${currentSlide}`);
             currentSlide += 1;
         } else throw new Error("Request failed");
         isRequesting = false;
@@ -596,7 +597,7 @@ window.addEventListener("load", async ()=>{
     };
     nextButtons.forEach((nextButton, index)=>{
         nextButton.addEventListener("click", async ()=>{
-            await handleClick(nextSlides[index]);
+            await handleClick();
         });
     });
     backButtons.forEach((backButton, index)=>{

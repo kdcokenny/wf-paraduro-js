@@ -558,19 +558,19 @@ function hmrAccept(bundle, id) {
 
 },{}],"aenu9":[function(require,module,exports) {
 async function loadDateModule() {
-    await require("727d1b360d4eec1c");
+    await require("23bcb3cfcff5e124");
 }
 async function loadChartJsModule() {
-    await require("b729da2ec9b0e528");
+    await require("20f5263f40f744f2");
 }
 async function loadShimmerScssModule() {
-    await require("aa37f532b5085637");
+    await require("7d8ee252a60813a5");
 }
 async function loadOnboardingSlideModule() {
-    await require("3cdb4e6684989382");
+    await require("a99aa65cac664934");
 }
 async function loadOnboardingUploadImageModule() {
-    await require("9e2f4d46c3056644");
+    await require("f8f20e575ed7bf3e");
 }
 function getCurrentPath() {
     return window.location.pathname;
@@ -587,15 +587,15 @@ document.addEventListener("DOMContentLoaded", ()=>{
 });
 console.log("init");
 
-},{"727d1b360d4eec1c":"cQEvf","b729da2ec9b0e528":"bwidj","aa37f532b5085637":"kUXKu","3cdb4e6684989382":"7YRed","9e2f4d46c3056644":"35MMd"}],"cQEvf":[function(require,module,exports) {
-module.exports = require("c180af330d992162")(require("18e2c78a7fa6ca3f").getBundleURL("hWUTQ") + "date.b33864d0.js" + "?" + Date.now()).catch((err)=>{
+},{"23bcb3cfcff5e124":"cQEvf","20f5263f40f744f2":"bwidj","7d8ee252a60813a5":"kUXKu","a99aa65cac664934":"7YRed","f8f20e575ed7bf3e":"35MMd"}],"cQEvf":[function(require,module,exports) {
+module.exports = require("6488317348b16c3f")(require("ecbafef00674dc19").getBundleURL("hWUTQ") + "date.b33864d0.js" + "?" + Date.now()).catch((err)=>{
     delete module.bundle.cache[module.id];
     throw err;
 }).then(()=>module.bundle.root("3otmg"));
 
-},{"c180af330d992162":"61B45","18e2c78a7fa6ca3f":"lgJ39"}],"61B45":[function(require,module,exports) {
+},{"6488317348b16c3f":"61B45","ecbafef00674dc19":"lgJ39"}],"61B45":[function(require,module,exports) {
 "use strict";
-var cacheLoader = require("4d4a1c2b1a2cbf6f");
+var cacheLoader = require("111abd2a1d613c37");
 module.exports = cacheLoader(function(bundle) {
     return new Promise(function(resolve, reject) {
         // Don't insert the same script twice (e.g. if it was already in the HTML)
@@ -629,7 +629,7 @@ module.exports = cacheLoader(function(bundle) {
     });
 });
 
-},{"4d4a1c2b1a2cbf6f":"j49pS"}],"j49pS":[function(require,module,exports) {
+},{"111abd2a1d613c37":"j49pS"}],"j49pS":[function(require,module,exports) {
 "use strict";
 var cachedBundles = {};
 var cachedPreloads = {};
@@ -690,20 +690,20 @@ exports.getBaseURL = getBaseURL;
 exports.getOrigin = getOrigin;
 
 },{}],"bwidj":[function(require,module,exports) {
-module.exports = require("e7adfb839273c4f5")(require("b2871b231ae7a58e").getBundleURL("hWUTQ") + "dashboard.96f2cdeb.js" + "?" + Date.now()).catch((err)=>{
+module.exports = require("9dc879cbe300b88c")(require("8710ac8a1688c49d").getBundleURL("hWUTQ") + "dashboard.96f2cdeb.js" + "?" + Date.now()).catch((err)=>{
     delete module.bundle.cache[module.id];
     throw err;
 }).then(()=>module.bundle.root("Mvrbg"));
 
-},{"e7adfb839273c4f5":"61B45","b2871b231ae7a58e":"lgJ39"}],"kUXKu":[function(require,module,exports) {
-module.exports = require("32f4c8931440d69b")(require("5da1d727d0eac66").getBundleURL("hWUTQ") + "shimmer.08ffb870.css" + "?" + Date.now()).catch((err)=>{
+},{"9dc879cbe300b88c":"61B45","8710ac8a1688c49d":"lgJ39"}],"kUXKu":[function(require,module,exports) {
+module.exports = require("6d7e661d39cd0a23")(require("fc77b9ae86480744").getBundleURL("hWUTQ") + "shimmer.08ffb870.css" + "?" + Date.now()).catch((err)=>{
     delete module.bundle.cache[module.id];
     throw err;
 });
 
-},{"32f4c8931440d69b":"1MWPE","5da1d727d0eac66":"lgJ39"}],"1MWPE":[function(require,module,exports) {
+},{"6d7e661d39cd0a23":"1MWPE","fc77b9ae86480744":"lgJ39"}],"1MWPE":[function(require,module,exports) {
 "use strict";
-var cacheLoader = require("ee9561b50e8498c4");
+var cacheLoader = require("9f2e5f73bf6d698b");
 module.exports = cacheLoader(function(bundle) {
     return new Promise(function(resolve, reject) {
         // Don't insert the same link element twice (e.g. if it was already in the HTML)
@@ -730,18 +730,18 @@ module.exports = cacheLoader(function(bundle) {
     });
 });
 
-},{"ee9561b50e8498c4":"j49pS"}],"7YRed":[function(require,module,exports) {
-module.exports = require("ba7a6a0c851d6aa3")(require("7a872314112b5a51").getBundleURL("hWUTQ") + "slide.df2bc434.js" + "?" + Date.now()).catch((err)=>{
+},{"9f2e5f73bf6d698b":"j49pS"}],"7YRed":[function(require,module,exports) {
+module.exports = require("309a2ab3d95e3191")(require("82d0230cb8bf353a").getBundleURL("hWUTQ") + "slide.df2bc434.js" + "?" + Date.now()).catch((err)=>{
     delete module.bundle.cache[module.id];
     throw err;
 }).then(()=>module.bundle.root("biBaa"));
 
-},{"ba7a6a0c851d6aa3":"61B45","7a872314112b5a51":"lgJ39"}],"35MMd":[function(require,module,exports) {
-module.exports = require("43608a67f3501192")(require("7247e963328bc250").getBundleURL("hWUTQ") + "uploadImage.04439741.js" + "?" + Date.now()).catch((err)=>{
+},{"309a2ab3d95e3191":"61B45","82d0230cb8bf353a":"lgJ39"}],"35MMd":[function(require,module,exports) {
+module.exports = require("a72e9a364a5addb7")(require("144030c07411157c").getBundleURL("hWUTQ") + "uploadImage.04439741.js" + "?" + Date.now()).catch((err)=>{
     delete module.bundle.cache[module.id];
     throw err;
 }).then(()=>module.bundle.root("74XQN"));
 
-},{"43608a67f3501192":"61B45","7247e963328bc250":"lgJ39"}]},["d8XZh","aenu9"], "aenu9", "parcelRequire893e")
+},{"a72e9a364a5addb7":"61B45","144030c07411157c":"lgJ39"}]},["d8XZh","aenu9"], "aenu9", "parcelRequire893e")
 
 //# sourceMappingURL=index.e37f48ea.js.map

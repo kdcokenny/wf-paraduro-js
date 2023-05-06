@@ -10,13 +10,13 @@ async function loadShimmerScssModule() {
   await import('./scss/shimmer.scss');
 }
 
-// async function loadOnboardingSlideModule() {
-//   await import('./onboarding/slide');
-// }
+async function loadOnboardingSlideModule() {
+  await import('./onboarding/slide');
+}
 
-// async function loadOnboardingUploadImageModule() {
-//   await import('./onboarding/uploadImage');
-// }
+async function loadOnboardingUploadImageModule() {
+  await import('./onboarding/uploadImage');
+}
 
 function getCurrentPath() {
   return window.location.pathname;
@@ -30,9 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
     loadDateModule();
   }
 
-  // if (currentPath === '/velkommen/person') {
-  //   loadOnboardingSlideModule();
-  // }
+  if (currentPath === '/velkommen/person') {
+    loadOnboardingSlideModule();
+  }
 
   // Load the rest of the modules on every page
   loadChartJsModule();
